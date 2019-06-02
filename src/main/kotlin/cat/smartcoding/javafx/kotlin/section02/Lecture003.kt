@@ -4,6 +4,8 @@ package cat.smartcoding.javafx.kotlin.section02
 *
 * Sintaxis Básica
 *
+* En esta lección veremos la sintaxis básica de Kotlin, posteriormente se profundizará en cada uno de los temas.
+*
 * Igual que en Java la declaración de package debería estar al inicio del fichero, pero a diferencia de Java,
 * no es necesario que haya una correspondencia entre paquetes y directorios.
 *
