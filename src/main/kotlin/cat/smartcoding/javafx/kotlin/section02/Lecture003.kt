@@ -31,7 +31,7 @@ package cat.smartcoding.javafx.kotlin.section02
 *
 * import paquete.* // El contenido del paquete en su totalidad esta disponible sin necesidad de cualificadores
 *
-* La keyword o palabra reservada no esta limitada a importar clases, también podemos importar:
+* La keyword o palabra reservada 'import' no esta limitada a importar clases, también podemos importar:
 *
 * Funciones y propiedades
 * Funciones y propiedades declaradas dentro de un object
@@ -61,34 +61,74 @@ var l = 0
 
 /* Así se definen funciones en Kotlin */
 
-/* El tipo del valor de retorno es implícito */
+/* El tipo del valor de retorno es implícito, Int */
 fun suma(a: Int, b: Int) = a + b
 
-/* El tipo del valor de retorno es explicito, calculado y devuelto dentro del bloque */
+/* El tipo del valor de retorno es explicito, calculado y retonado dentro del bloque */
 fun multiplica(a: Int, b: Int): Int {
     return a * b
 }
 
-/* Si una función no devuelve ningun valor, se expresa con el tipo de retorno Unit que es opcional */
+/* Si una función no devuelve ningun valor, se expresa con el tipo de retorno 'Unit' que es opcional */
 fun printIt(): Unit {
-    println("""Hola con una
-        |cadena multilinea""".trimMargin())
+    println(
+        """Hola con una
+        |cadena multilinea""".trimMargin()
+    )
 }
 
-/* Kotlin soporta String template */
+/* Kotlin soporta String templates */
 fun printIt(nombre: String, apellidos: String) {
     println("hola $nombre, ${apellidos.toUpperCase()}")
 }
 
-/* En Kotlin, la construcción if() es una expresión, es decir, retorna un valor */
+/* En Kotlin, la construcción 'if' es una expresión, es decir, retorna un valor */
 fun maximo(a: Int, b: Int) = if (a > b) a else b
 
-/* Cuando se puede dar el valor null tenemos que declararlo explícitamente */
+/* Cuando se puede dar el valor 'null' tenemos que declararlo explícitamente */
 fun divide(a: Double, b: Double): Double? = if (b == 0.0) null else a / b
 
-/* El operador is y !is comprueba si un objeto es de un determinado tipo o no */
+/* El operador 'is' y '!is' comprueba si un objeto es de un determinado tipo o no */
 fun longitud(obj: Any): Int? {
-    // El cast o conversión de tipos no es necesario, la hace el compilador
+    // El cast o conversión de tipos no es necesario, la hace el compilador automáticamente
     if (obj is String) return obj.length
     return null
+}
+
+/* 'when', el 'switch' de Java, también es una expresión y no un statement u orden, puede retornar un valor */
+fun desc(obj: Any): String = when (obj) {
+    0 -> "Cero"
+    "Hola" -> "Cadena"
+    is Int -> "Entero"
+    !is String -> "No es cadena"
+    else -> "Tipo desconocido"
+}
+
+/* El método 'main' sigue siendo el punto de entrada a un fichero o clase Kotlin */
+fun main(args: Array<String>) {
+
+    /* Si items es una lista de elementos, podemos recorrer la lista de diferentes maneras */
+    val items = arrayOf("Delta", "Alpha", "Echo", "Golf", "Bravo", "Foxtrot", "Charlie")
+    for (item in items) println(item)
+    for (index in items.indices) println("$index ${items[index]}")
+
+    /* Kotlin también tiene rangos! 'step' es opcional y por defecto és 1. Este bucle escribe del 1 al 5 */
+    for (i in 1..5 step 1) println(i)
+
+    /* Este bucle escibe 5, 3, 1 */
+    for (i in 5 downTo 1 step 2) println(i)
+
+    /* El operador 'in' nos permite saber si una constante esta dentro de un rango */
+    println(1 in 1..5)
+
+    /* En Kotlin la API Collections de Java ha sido mejorada com funciones de extensión y lambdas */
+    items
+        .filter { it.contains("l") }
+        .sortedBy { it.length }
+        .map { it.toUpperCase() }
+        .forEach { println(it) }
+
+    /* En Kotlin no se utiliza el operador 'new' para crear una instancia de una clase */
+    class Cuadrado
+    val cuadrado = Cuadrado()
 }
