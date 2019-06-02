@@ -9,5 +9,10 @@ package cat.smartcoding.javafx.kotlin.section02
 * */
 
 
-/* La forma más facil que crear un POJO es mediante una data class  */
-data class Estudiante(val id: Long, val nombre: String)
+/*
+* La forma más facil que crear un POJO (Plain Old Java Object) es mediante una data clas que proporciona
+* getters y setters, y los métodos equals, hashCode, toString, copy, component1, component2, ...
+* */
+data class Estudiante(val id: Long, val nombre: String = "Desconocido")
+
+/* En Kotlin se pueden asignar valores por defecto a las propiedades de las clases y parámetros de funciones */
